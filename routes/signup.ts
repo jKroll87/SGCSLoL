@@ -1,9 +1,9 @@
 import * as express from 'express';
 import * as mysql from 'mysql';
-import * as dbconfig from '../config/database';
+import * as config from '../config/config.js';
 
 let router = express.Router();
-const connection = mysql.createConnection(dbconfig);
+const connection = mysql.createConnection(config);
 
 router.get('/signup', (req, res, next) => {
     res.render('signup', 
@@ -13,14 +13,22 @@ router.get('/signup', (req, res, next) => {
     );
 });
 
-
-// Error
 router.post('/signup', (req, res, next) => {
     connection.query('INSERT INTO `user` (`id`, `password`, `name`, `phone`) VALUES ' + 
     "('" + req.body.id + "', '" + req.body.password + "', '" + req.body.name + "', '" + req.body.phone + "')", (error, rows) => {
-        if (error) throw error;
-        console.log('New User info is: ', rows);
-        res.send(rows);
+        if (error) {
+            console.log("Error", error);
+            res.send({
+                "code": 400,
+                "error": "Something wrong!"
+            })
+        } else {
+            res.render('signupresult', {
+                title: 'Sign Up Result',
+                success: "Register Success!"
+            });
+            console.log('New User info is: ', rows);
+        };
     });
 });
 

@@ -4,6 +4,7 @@ let app = express();
 import * as index from './routes/index';
 import * as login from './routes/login';
 import * as signup from './routes/signup';
+import * as config from './config/config.js';
 
 import * as path from 'path';
 app.set('views', path.join(__dirname, 'views'));
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressSession({
-    secret : '',
+    secret : config.session.secret,
     resave: false,
     saveUninitialized: true
 }));
