@@ -4,6 +4,7 @@ let app = express();
 import * as index from './routes/index';
 import * as login from './routes/login';
 import * as signup from './routes/signup';
+import * as vote from './routes/vote';
 import * as config from './config/config.js';
 
 import * as path from 'path';
@@ -27,6 +28,7 @@ app.use(expressSession({
 app.use('/', index.router);
 app.use('/', login.router);
 app.use('/', signup.router);
+app.use('/', vote.router);
 
 app.listen(3000, () => {
     console.log('listenling on port 3000');

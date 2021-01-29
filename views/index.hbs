@@ -6,3 +6,10 @@
 {{else}}
     <p>Click <a href="/login">here to login</a></p>
 {{/if}}
+
+<ul class="department_list">
+    {{#each results}}
+        <li>{{this.name}}</li>
+        <li>{{this.like}}</li>
+    {{/each}}
+</ul>
