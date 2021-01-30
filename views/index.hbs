@@ -2,7 +2,7 @@
 <p>Welcome to {{title}}</p>
 
 {{#if username}}
-    <p>User : {{id}} logged in.</p>
+    <p>User : {{id}} logged in.</p> <!--?-->
 {{else}}
     <p>Click <a href="/login">here to login</a></p>
 {{/if}}
@@ -13,3 +13,36 @@
         <li>{{this.like}}</li>
     {{/each}}
 </ul>
+
+
+<!--mainpage-->
+<div class="main_page">
+    <div class="top_text">
+        <h1>2021 공학부 LOL 대항전</h1>
+    </div>
+    <div class="lol_text">
+        <h2>LEAGUE</h2><h3>of</h3>
+        <h2>LEGENDS</h2>
+    </div>
+
+    <div class="btn_area">
+
+        {{#if username}}
+            <div class="btn_vote">
+                <a href="/">투표하기</a>  <!--add vote url-->
+            </div>
+        {{else}}
+            <div class="btn_login">
+                <a href="/login">로그인</a>
+            </div>
+        {{/if}}
+    </div>
+    <div class="liketeam_area">
+        <ul class="department_list">
+            {{#each results}}
+                <li>{{this.name}}</li>
+                <li>{{this.like}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
