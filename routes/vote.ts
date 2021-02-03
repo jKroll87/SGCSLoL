@@ -14,8 +14,16 @@ router.get('/vote', (req, res, next) => {
 
 router.post('/vote', (req, res, next) => {
     let drake = req.body.drake;
+    
+    // Check if user changed Radio value to ones that's not in range
+    if(drake != '1' && drake != '2' && drake != '3' && drake != '4') 
+        return res.send({
+                "code": 400,
+                "error": "Something wrong!"
+        })
     // let now = Date.now();
     // let date = new Date(now);
+    
     let query = 'INSERT INTO dragon (id, game, dragon, date) VALUES (?, ?, ?, ?)';
     // Escape SQL injection
     connection.query(query, ["00000000", 0, drake, "2000-01-01 00:00:00"], (error, rows) => {
