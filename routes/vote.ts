@@ -6,7 +6,19 @@ let router = express.Router();
 const connection = mysql.createConnection(config);
 
 router.get('/vote', (req, res, next) => {
-    connection.query('', (error, rows) => {
+    res.render('vote', {
+            title: 'vote'
+        }
+    );
+})
+
+router.post('/vote', (req, res, next) => {
+    let drake = req.body.drake;
+    // let now = Date.now();
+    // let date = new Date(now);
+    let query = 'INSERT INTO dragon (id, game, dragon, date) VALUES ("00000000", 0, ' + drake + ', ' + '"2000-01-01 00:00:00"' + ')';
+
+    connection.query(query, (error, rows) => {
         if (error) {
             console.log("Error", error);
             res.send({
@@ -14,8 +26,8 @@ router.get('/vote', (req, res, next) => {
                 "error": "Something wrong!"
             })
         } else {
-            //
-        };
+            console.log("Success");
+        }
     });
 });
 
