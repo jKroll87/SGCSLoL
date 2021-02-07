@@ -3,7 +3,7 @@ let app = express();
 
 import * as index from './routes/index';
 import * as login from './routes/login';
-import * as signup from './routes/signup';
+import * as register from './routes/register';
 import * as vote from './routes/vote';
 import * as config from './config/config.js';
 
@@ -27,7 +27,7 @@ app.use(expressSession({
 
 app.use('/', index.router);
 app.use('/', login.router);
-app.use('/', signup.router);
+app.use('/', register.router);
 app.use('/', vote.router);
 
 app.listen(3000, () => {

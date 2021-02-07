@@ -5,15 +5,15 @@ import * as config from '../config/config.js';
 let router = express.Router();
 const connection = mysql.createConnection(config);
 
-router.get('/signup', (req, res, next) => {
-    res.render('signup', 
+router.get('/register', (req, res, next) => {
+    res.render('register', 
         {
-            title: 'SignUp'
+            title: 'register'
         }
     );
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     connection.query('INSERT INTO `user` (`id`, `password`, `name`, `phone`) VALUES ' + 
     "('" + req.body.id + "', '" + req.body.password + "', '" + req.body.name + "', '" + req.body.phone + "')", (error, rows) => {
         if (error) {
